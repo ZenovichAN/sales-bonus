@@ -10,7 +10,7 @@ function calculateSimpleRevenue(purchase, _product) {
 
   // Коэффициент "сколько остаётся после скидки":
   // 1 - (скидка% / 100)
-  const discountCoef = 1 - (discount / 100);
+  const discountCoef = 1 - discount / 100;
 
   // Выручка по позиции = цена продажи * количество * коэффициент скидки
   return sale_price * quantity * discountCoef;
@@ -32,7 +32,7 @@ function calculateBonusByProfit(index, total, seller) {
   }
   // 10% — 2 и 3 место
   else if (index === 1 || index === 2) {
-    return profit * 0.10;
+    return profit * 0.1;
   }
   // 0% — последнее место
   else if (index === total - 1) {
@@ -102,14 +102,10 @@ function analyzeSalesData(data, options) {
   // ШАГ 4. Индексация продавцов и товаров (быстрый доступ)
   // =========================================================
   // sellerIndex: id -> запись из sellerStats
-  const sellerIndex = Object.fromEntries(
-    sellerStats.map((s) => [s.id, s])
-  );
+  const sellerIndex = Object.fromEntries(sellerStats.map((s) => [s.id, s]));
 
   // productIndex: sku -> запись из data.products
-  const productIndex = Object.fromEntries(
-    data.products.map((p) => [p.sku, p])
-  );
+  const productIndex = Object.fromEntries(data.products.map((p) => [p.sku, p]));
 
   // =========================================================
   // ЭТАП 3. БИЗНЕС-ЛОГИКА
